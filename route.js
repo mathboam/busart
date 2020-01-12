@@ -40,4 +40,12 @@ router.route('/userDashboard')
 
 router.route('/logout')
 .get(publisherController.logoutController)
+
+/* 
+    API
+*/
+router.route('/api/search')
+.get(articleController.search);
+
+
 module.exports = router;

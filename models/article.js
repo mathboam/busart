@@ -18,8 +18,18 @@ const Article = new mongoose.Schema({
     verified:{
         type:Boolean,
         default:false
+    },
+    publshed:{
+        type:Boolean,
+        default:false,
     }
 });
+
+// Define our index
+Article.index({
+    title: 'text',
+    body:'text'
+})
 
 const article = mongoose.model('articles',Article);
 

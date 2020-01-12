@@ -3,7 +3,7 @@ const User = require('../models/publisher');
 
 module.exports = {
     addArticle: async (req,res,next) => {
-        const { userId } = req.params;
+        const { userId } =req.params;
 
         const user = await User.findById(userId);
 
@@ -17,7 +17,9 @@ module.exports = {
 
         await user.save();
 
-        res.status(200).json({message:'saved successfully'});
+        req.flash('success_msg','Article is saved successfully');
+        res.redirect('/userDashboard');
+        // res.status(200).json({message:'saved successfully'});
     },
 
     getAllVerifiedArtcles: async (req,res,next) => {
@@ -58,6 +60,16 @@ module.exports = {
         const allArticles = await Article.find();
         res.json(allArticles);
     },
+
+    search: async (req,res) =>{
+        // res.send(req.query);
+        const articles = await Article.find({
+            $text:{
+                $search: req.query.q
+            }
+        });
+        res.json(articles);
+    }
     
 }
 

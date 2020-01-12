@@ -55,7 +55,7 @@ module.exports={
             
             // hash publisher's password
              bcrypt.genSalt(10,(err,salt)=> bcrypt.hash(publisher.password,salt, async (err,hash)=>{
-            if (err) throw err;
+            // if (err) throw err;
            
             // set password to hashed password
             publisher.password = hash;
@@ -79,10 +79,10 @@ module.exports={
         const {userId} = req.params;
 
         await Publisher.findByIdAndDelete(userId,(err)=>{
-            if (err){
-                throw err;
-            }
-        // res.status(200).json({message:'deleted user'});
+            // if (err){
+            //     throw err;
+            // }
+        res.status(200).json({message:'deleted user'});
         })
         next();
     },
