@@ -85,7 +85,7 @@ mongoose.connect(process.env.DATABASE, {useNewUrlParser:true,useCreateIndex:true
     if (err) {
         throw err
     }
-    console.log(`database connected successfully`);
+    console.log(`database connected at successfully`);
     
 })
 

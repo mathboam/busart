@@ -29,6 +29,14 @@ const publisher = new mongoose.Schema({
         type:Boolean,
         default:false
     }
+    // image:{
+    //     type:File,
+    //     default:
+    // },
+    // gender:{
+    //     type:String,
+
+    // }
 
 })
 

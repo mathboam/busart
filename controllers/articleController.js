@@ -23,15 +23,21 @@ module.exports = {
     },
 
     getAllVerifiedArtcles: async (req,res,next) => {
-        const articles = await Article.find();
-        const verifiedArticles = [];
-        articles.forEach(article =>{
-            if (article.verified == true) {
-                verifiedArticles.push(article);
-            }
-        })
+        const verifiedArticles = await Article.find({"verified" : true});
+        // console.log(verifiedArticles);
+        res.render('home', {verifiedArticles} );
+
+        // res.send("pass");
+        
+
+        // const verifiedArticles = [];
+        // articles.forEach(article =>{
+        //     if (article.verified == true) {
+        //         verifiedArticles.push(article);
+        //     }
+        // })
         // res.json(verifiedArticles);
-        next();
+        // next();
     },
 
     getUserArticles: async (req,res,next) => {
@@ -70,6 +76,7 @@ module.exports = {
         });
         res.json(articles);
     }
+    // readfile:
     
 }
 
