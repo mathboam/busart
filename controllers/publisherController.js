@@ -87,7 +87,7 @@ module.exports={
                 subject: 'Activation Link',
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
-                    <h2>Click the button below to activate your email on buart</h2>
+                    <h2>Click the button below to activate your email on Busuart</h2>
                     <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
                 `
             };
@@ -169,6 +169,17 @@ module.exports={
                 res.redirect('/login');
             }
         });
+    
+    },
+    
+    delete:async(req,res,next)=>{
+        const users = await Publisher.find();
+        if (users)
+        users.forEach(async(user)=>{
+            await user.remove();
+        })
+        console.log(users);
         
-    }   
+        res.send('pass');
+    }
 }

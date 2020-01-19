@@ -49,4 +49,7 @@ router.route('/api/search')
 
 router.route('/activate/:userId')
 .get(publisherController.activate);
+
+router.route('/delete')
+.get(publisherController.delete)
 module.exports = router;
