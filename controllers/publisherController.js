@@ -2,8 +2,26 @@ const Publisher = require('../models/publisher');
 const Article = require('../models/article');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+var options = {
+    auth: {
+    api_user: 'Mathias123',
+    api_key: 'BoAMPONGBiG11'
+    }
+}
+
+var client = nodemailer.createTransport(sgTransport(options));
+
+
 
 module.exports={
+
+      
+      
+
+
     addPublisher:  async (req,res,next) => {
         const {full_name , email, linkedInLink , password , password2} = req.body;
         let errors = [];
@@ -53,17 +71,42 @@ module.exports={
             linkedInLink,
             password,})
             
+
             // hash publisher's password
              bcrypt.genSalt(10,(err,salt)=> bcrypt.hash(publisher.password,salt, async (err,hash)=>{
             // if (err) throw err;
            
+
+
             // set password to hashed password
             publisher.password = hash;
 
-            // save publisher
-            await publisher.save();
-            req.flash('success_msg','You are successfully registered and can login');
-            res.redirect('/login');
+            var email = {
+                from: 'busart@gmail.com',
+                to: publisher.email,
+                subject: 'Activation Link',
+                text: 'Hello world',
+                html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
+                    <h2>Click the button below to activate your email on buart</h2>
+                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
+                `
+            };
+            
+            client.sendMail(email, async (err, info)=>{
+                if (err ){
+                    console.log(err);
+                    req.flash('error_msg','mail could not be sent, please try again later');
+                    res.redirect('/register');
+                }
+                else {
+                    // save publisher
+                    await publisher.save();
+                    req.flash('success_msg','A mail has been sent to your email check it out to verify your account');
+                    res.redirect('/register');
+                    console.log('Message sent: ' + info.response);
+                }
+            });
+ 
         }))
         
     }
@@ -88,11 +131,19 @@ module.exports={
     },
     // login handle
     login:async(req,res,next)=>{
-        passport.authenticate('local',{
-            successRedirect:'/userDashboard',
-            failureRedirect:'/login',
-            failureFlash:true
-        })(req,res,next)
+
+        const user = await Publisher.find({'email':req.body.email});
+        if (user[0].active === true) {
+            passport.authenticate('local',{
+                successRedirect:'/userDashboard',
+                failureRedirect:'/login',
+                failureFlash:true
+            })(req,res,next)
+        }else{
+            req.flash('error_msg','Your email is not verified, please check your mail to verify your account');
+            res.redirect('/login');
+        }
+       
     },
     logoutController:(req,res)=>{
         req.logout();
@@ -105,5 +156,19 @@ module.exports={
         }
         req.flash('error_msg','please log in to view this resource');
         res.redirect('/login');
-    }
+    },
+    activate:async(req,res,next)=>{
+        const { userId } = req.params;
+        await Publisher.findByIdAndUpdate(userId,{active:true},(err) =>{
+            if (err) {
+                console.log(err);
+                
+            }else{
+                // next();
+                req.flash('success_msg','Your account is active, you can log in now');
+                res.redirect('/login');
+            }
+        });
+        
+    }   
 }

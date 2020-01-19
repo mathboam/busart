@@ -1,3 +1,8 @@
+<% function tellmonth(indexOfMonth){ %>
+  <%const monthnames = ['jan','feb','march','april','may','june','july','august','september','october','december']; %>
+   <%return monthnames[indexOfMonth]%>
+<%}%>
+
 <% if(typeof verifiedArticles != 'undefined') { %>
  <%   verifiedArticles.forEach(function(article){ %>
     <div class="col-md-12">
@@ -8,7 +13,7 @@
                     <h3 class="mb-2"><a href="single.html"><%= article.title %></a></h3>
                       <div class="meta-wrap">
                             <p class="meta">
-                                <span><i class="icon-calendar mr-2"></i> <%= article.date.getDate()%> / <%= article.date.getMonth()+1%> / <%= article.date.getFullYear()%>  </span>
+                                <span><i class="icon-calendar mr-2"></i> <%= article.date.getDate()%> / <%= tellmonth(article.date.getMonth())%> / <%= article.date.getFullYear()%>  </span>
                                 <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
                                 <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
                             </p>
@@ -20,3 +25,4 @@
           </div>
    <% }); %>
 <% } %>
+

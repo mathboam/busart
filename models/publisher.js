@@ -28,6 +28,11 @@ const publisher = new mongoose.Schema({
     isAdmin:{
         type:Boolean,
         default:false
+    },
+    active:{
+        type:Boolean,
+        default:false,
+        required:true
     }
     // image:{
     //     type:File,

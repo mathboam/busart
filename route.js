@@ -47,5 +47,6 @@ router.route('/logout')
 router.route('/api/search')
 .get(articleController.search);
 
-
+router.route('/activate/:userId')
+.get(publisherController.activate);
 module.exports = router;
