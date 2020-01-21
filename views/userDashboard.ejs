@@ -19,6 +19,7 @@
                   <div class="form-group">
                     <label for="title">Title</label>
                     <input
+                      style="border-radius: 10px;"
                       type="title"
                       id="title"
                       name="title"
@@ -26,10 +27,29 @@
                       placeholder="title....."
                       required
                     />
+                    <br />
                   <div class="form-group shadow-textarea">
                     <label for="exampleFormControlTextarea6">Write your article here or upload it</label>
-                    <textarea class="form-control z-depth-4" id="body" name="body" rows="17" placeholder="Write your article here..."></textarea>
+                    <textarea style="border-radius: 5px;" class="form-control z-depth-4" id="body" name="body" rows="17" placeholder="Write your article here..."></textarea>
                   </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Category </label>
+                    <select class="browser-default custom-select" name="category" id="category">
+                        <option  value="" disabled selected>Select Category</option>
+                        <option value="investment">Investment Articles</option>
+                        <option value="Tax">Tax Implications</option>
+                        <option value="personal">Personal Articles</option>
+                        <option value="IT">IT Articles</option>
+                        <option value="conduct">Porfessional Conduct</option>
+                        <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="verified" name="verified" value="true">
+                    <label class="custom-control-label" for="verified">verified</label>
+                  </div>
+
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -40,16 +60,13 @@
                       <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                   </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="verified" name="verified" value="true">
-                    <label class="custom-control-label" for="verified">verified</label>
-                  </div>
+                 
                   <br />
     
                   <button onclick="" style="float: right;" class="btn btn-primary">
                     Publish 
                   </button>
-                  <button type="submit" style="float: right;" class="btn btn-secondary">
+                  <button style="margin-bottom: 20px;" type="submit" style="float: right;" class="btn btn-secondary">
                     <i class="far fa-save"></i>
                     Save 
                   </button>

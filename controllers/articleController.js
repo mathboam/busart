@@ -1,5 +1,7 @@
 const Article = require('../models/article');
 const User = require('../models/publisher');
+const multer = require('multer');
+
 
 module.exports = {
     addArticle: async (req,res,next) => {

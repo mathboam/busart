@@ -2,8 +2,10 @@ const Publisher = require('../models/publisher');
 const Article = require('../models/article');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-var nodemailer = require('nodemailer');
-var sgTransport = require('nodemailer-sendgrid-transport');
+const nodemailer = require('nodemailer');
+const sgTransport = require('nodemailer-sendgrid-transport');
+const multer = require('multer');
+
 
 var options = {
     auth: {
@@ -23,11 +25,11 @@ module.exports={
 
 
     addPublisher:  async (req,res,next) => {
-        const {full_name , email, linkedInLink , password , password2} = req.body;
+        const {full_name , email, linkedInLink , password , password2,gender,image} = req.body;
         let errors = [];
 
         // check for required fields
-        if (!full_name || !email || !linkedInLink || !password || !password2 ) {
+        if (!full_name || !email || !linkedInLink || !password || !password2 || !gender) {
             errors.push({msg:'please fill in all fields'});
         }
 
@@ -65,11 +67,19 @@ module.exports={
                         password2
                     });
         }else{
+            if (!image && gender === 'm') {
+                image = '../public/uploads/Images/male.png'
+            }else if(!image && gender === 'f'){
+                image =  '../public/uploads/Images/female.png'
+            }
         const publisher = new Publisher({
             full_name,
             email,
             linkedInLink,
-            password,})
+            password,
+            gender,
+            image    
+        })
             
 
             // hash publisher's password
@@ -88,7 +98,7 @@ module.exports={
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
                     <h2>Click the button below to activate your email on Busuart</h2>
-                    <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
+                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
                 `
             };
             
@@ -133,16 +143,21 @@ module.exports={
     login:async(req,res,next)=>{
 
         const user = await Publisher.find({'email':req.body.email});
-        if (user[0].active === true) {
-            passport.authenticate('local',{
-                successRedirect:'/userDashboard',
-                failureRedirect:'/login',
-                failureFlash:true
-            })(req,res,next)
+        if ( typeof user !== undefined) {
+            if (user[0].active === true) {
+                passport.authenticate('local',{
+                    successRedirect:'/userDashboard',
+                    failureRedirect:'/login',
+                    failureFlash:true
+                })(req,res,next)
+            }else{
+                req.flash('error_msg','Your email is not verified, please check your mail to verify your account');
+                res.redirect('/login');
+            } 
         }else{
-            req.flash('error_msg','Your email is not verified, please check your mail to verify your account');
-            res.redirect('/login');
+
         }
+       
        
     },
     logoutController:(req,res)=>{

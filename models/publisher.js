@@ -33,16 +33,14 @@ const publisher = new mongoose.Schema({
         type:Boolean,
         default:false,
         required:true
+    },
+    gender:{
+        type:String,
+        required:true
+    },
+    image:{
+        type:String,
     }
-    // image:{
-    //     type:File,
-    //     default:
-    // },
-    // gender:{
-    //     type:String,
-
-    // }
-
 })
 
 const newPublisher = mongoose.model('newPublisher',publisher);
