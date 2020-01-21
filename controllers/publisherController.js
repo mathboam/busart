@@ -98,7 +98,7 @@ module.exports={
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
                     <h2>Click the button below to activate your email on Busuart</h2>
-                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
+                    <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
                 `
             };
             
