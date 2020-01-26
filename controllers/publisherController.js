@@ -5,8 +5,48 @@ const passport = require('passport');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 const multer = require('multer');
+const path = require('path')
 
 
+// set Storage engine
+const storage = multer.diskStorage({
+    destination:'./public/uploads/images/',
+    filename:function(req,file,cb){
+        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+})
+
+// function to check file type
+function checkFileType(file,cb){
+
+    const filetypes = /jpg|jpeg|png|gif/
+
+    // check extensions 
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+    // check mimtype
+    const mimetype = filetypes.test(file.mimetype);
+
+    if (extname && mimetype) {
+
+        return cb(null,true)
+
+    }else{
+        cb('Error:Images Only');
+    }
+}
+// initialize upload
+const upload = multer({
+    storage:storage,
+    limits:{fileSize:1 * 1000 * 1000},
+    fileFilter: function(req,file,cb){
+        checkFileType(file,cb)
+    },
+}).single('image');
+
+
+
+// send grid configuration
 var options = {
     auth: {
     api_user: 'Mathias123',
@@ -20,12 +60,21 @@ var client = nodemailer.createTransport(sgTransport(options));
 
 module.exports={
 
-      
-      
+    saveImage: (req,res,next)=>{
+        upload(req,res,(err) =>{
+            if(err) {
+                req.flash('error_msg',err);
+                res.redirect('/register');
+            }else{
+                console.log(req.file);
+                next();
+            }
+        });
 
+    },
 
-    addPublisher:  async (req,res,next) => {
-        const {full_name , email, linkedInLink , password , password2,gender,image} = req.body;
+    addPublisher:  async (req,res) => {
+        const {full_name , email, linkedInLink , password , password2,gender} = req.body;
         let errors = [];
 
         // check for required fields
@@ -42,7 +91,6 @@ module.exports={
         if (password && password.length < 6) {
             errors.push({msg:'password is not strong'});
         }
-
         // check if there is any error 
         if (errors.length > 0) {
             res.render('register',{
@@ -51,6 +99,8 @@ module.exports={
                 email,
                 linkedInLink,
                 password,
+                gender,
+                image,
                 password2
             })
         }else{
@@ -67,18 +117,16 @@ module.exports={
                         password2
                     });
         }else{
-            if (!image && gender === 'm') {
-                image = '../public/uploads/Images/male.png'
-            }else if(!image && gender === 'f'){
-                image =  '../public/uploads/Images/female.png'
-            }
+
+        const image = req.file.path;
+            
         const publisher = new Publisher({
             full_name,
             email,
             linkedInLink,
             password,
-            gender,
-            image    
+            gender,  
+            image
         })
             
 

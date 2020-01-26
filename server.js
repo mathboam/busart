@@ -7,7 +7,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const expressLayouts  = require('express-ejs-layouts');
 const passport = require('passport');
-const nodeMailer = require('nodemailer')
+
 
 require('dotenv').config({
     path:'./variables.env'

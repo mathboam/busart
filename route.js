@@ -13,7 +13,7 @@ router.route('/Articles/:userId/articles')
 
 router.route('/register')
 .get(frontEndController.registerController)
-.post(publisherController.addPublisher);
+.post(publisherController.saveImage, publisherController.addPublisher);
 
 router.route('/login')
 .get(frontEndController.loginController)
