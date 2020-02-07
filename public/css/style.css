@@ -1,4 +1,4 @@
-/*!
+/* !
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -8182,7 +8182,7 @@ h1, h2, h3, h4, h5,
   position: relative; }
 
 #colorlib-aside {
-  padding-top: 5em;
+  padding-top: 1em;
   padding-bottom: 40px;
   padding-left: 2em;
   padding-right: 2em;
@@ -8200,7 +8200,8 @@ h1, h2, h3, h4, h5,
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  border-right: 1px solid #e6e6e6; }
+  border-right: 1px solid #e6e6e6; 
+}
   @media (min-width: 992px) {
     #colorlib-aside {
       width: 25%; } }
@@ -8242,8 +8243,10 @@ h1, h2, h3, h4, h5,
       background-repeat: no-repeat;
       background-position: center center; }
   #colorlib-aside #colorlib-main-menu ul {
+    /* padding-top:20px; */
     margin: 0;
-    padding: 0; }
+    padding: 20px 0  0;
+   }
     #colorlib-aside #colorlib-main-menu ul li {
       margin: 0 0 10px 0;
       padding: 0;
@@ -9294,3 +9297,30 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+.elevation-2{box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)!important}
+
+.img-circle{border-radius:50%}
+.image{display:inline-block;padding-left:.8rem}
+
+.user-panel{
+  border-bottom:0.1px solid #1eafed;
+  padding-bottom: 5px;
+}
+/* .user-panel mt-3 pb-3 mb-3 d-flex.user-panel img{height:auto;width:2.1rem} */
+
+.user-panel img{height:30px;width:2.0rem}
+.image{float:none;}
+
+
+.info{overflow:hidden;white-space:nowrap; display:inline-block;padding:5px 5px 5px 10px}
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ router.route('/')
 
 
 
-router.route('/Articles/:userId/articles')
+router.route('/userDashboard/articles/')
 .get(articleController.getAllArtricles);
 
 router.route('/register')
@@ -40,6 +40,9 @@ router.route('/userDashboard')
 
 router.route('/logout')
 .get(publisherController.logoutController)
+
+router.route('/readmore/:articleId')
+.get(publisherController.readmore)
 
 /* 
     API

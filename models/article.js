@@ -26,6 +26,10 @@ const Article = new mongoose.Schema({
     category:{
         type:String,
         required:true
+    },
+    comment:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'comment'
     }
 });
 

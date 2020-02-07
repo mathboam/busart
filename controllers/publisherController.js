@@ -146,7 +146,7 @@ module.exports={
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
                     <h2>Click the button below to activate your email on Busuart</h2>
-                    <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
+                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
                 `
             };
             
@@ -211,7 +211,7 @@ module.exports={
     logoutController:(req,res)=>{
         req.logout();
         req.flash('success_msg','You are logged out');
-        res.redirect('/login');
+        res.redirect('/home');
     },
     ensureAuthenticated: function(req,res,next){
         if(req.isAuthenticated()){
@@ -244,5 +244,19 @@ module.exports={
         console.log(users);
         
         res.send('pass');
+    },
+    readmore:async(req,res,next)=>{
+        const { articleId } =  req.params;
+        console.log(articleId);
+        
+         await Article.findById(articleId,(err,article)=>{
+            if (err) {
+                console.log(err);
+            }else{
+                console.log(article);
+                res.render('single',{article});
+            }
+        });
+       
     }
 }

@@ -1,9 +1,22 @@
   
+  <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+  <aside id="colorlib-aside" role="complementary" class="js-fullheight">
+    <a href="/">
+      <img src="images/buslogo.png" class="logo-image" alt="logo">
+     </a>
+      <nav id="colorlib-main-menu" role="navigation">
+          <ul>
+              <li><a href="/">Home</a></li>
+              <li class="colorlib-active"><a href="/register">Register</a></li>
+              <li><a href="/login">Login</a></li>
+          </ul>
+      </nav>
+
+  </aside>
 <div class="row mt-5">
     <div class="col-md-6 m-auto">
       <div class="card card-body">
         <h1 class="text-center mb-3"><i class="fas fa-user-plus" style="color: #1eafed;"></i> Register</h1>
-        
         <form action="/register" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <%- include ('partials/messages') %>
