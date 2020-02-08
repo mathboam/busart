@@ -14,7 +14,7 @@
                       <div class="meta-wrap">
                             <p class="meta">
                                 <span><i class="icon-calendar mr-2"></i> <%= article.date.getDate()%> / <%= tellmonth(article.date.getMonth())%> / <%= article.date.getFullYear()%>  </span>
-                                <span><a href="/readmore/<%= article.id %>"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+                                <span><a href="/readmore/<%= article.id %>"><i class="icon-folder-o mr-2"></i><%= article.category %></a></span>
                                 <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
                             </p>
                       </div>

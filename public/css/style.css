@@ -5397,7 +5397,15 @@ button.bg-danger:focus {
   background-color: #bd2130 !important; }
 
 .bg-light {
-  background-color: #f8f9fa !important; }
+  background-color: #f8f9fa !important;
+  /* display:flex; */
+  /* flex-direction: column; */
+  /* position: relative; */
+  /* margin-left: 50px; */
+  /* width:30%; */
+  /* overflow-x: scroll; */
+  /* right:0; */
+}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -7284,7 +7292,7 @@ button.bg-dark:focus {
     padding: 1.5rem !important; }
   .pt-md-4,
   .py-md-4 {
-    padding-top: 1.5rem !important; }
+    padding-top: 0rem !important; }
   .pr-md-4,
   .px-md-4 {
     padding-right: 1.5rem !important; }
@@ -8204,10 +8212,10 @@ h1, h2, h3, h4, h5,
 }
   @media (min-width: 992px) {
     #colorlib-aside {
-      width: 25%; } }
+      width: 20%; } }
   @media (max-width: 991.98px) {
     #colorlib-aside {
-      width: 320px;
+      width: 12px;
       -moz-transform: translateX(-320px);
       -webkit-transform: translateX(-320px);
       -ms-transform: translateX(-320px);
@@ -8243,7 +8251,7 @@ h1, h2, h3, h4, h5,
       background-repeat: no-repeat;
       background-position: center center; }
   #colorlib-aside #colorlib-main-menu ul {
-    /* padding-top:20px; */
+    padding-top:20px;
     margin: 0;
     padding: 20px 0  0;
    }
@@ -9170,7 +9178,7 @@ textarea.form-control {
   color: rgba(255, 255, 255, 0.8); }
 
 .sidebar-box {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   padding: 0 25px;
   font-size: 15px;
   width: 100%; }
@@ -9324,3 +9332,6 @@ textarea.form-control {
 
 
 
+.fas{
+  margin-right: 5px;
+}
