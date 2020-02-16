@@ -8,7 +8,7 @@
     <div class="col-md-12">
         <!-- <%- verifiedArticles %> -->
               <div class="blog-entry ftco-animate d-md-flex">
-                  <a href="/readmore/<%= article.id %>" class="img img-2" style="background-image: url(images/image_1.jpg);"></a>
+                  <a href="/readmore/<%= article.id %>" class="img img-2" style="background-image: url('<%= article.relatedImage.slice(6)%>')"></a>
                   <div class="text text-2 pl-md-4">
                     <h3 class="mb-2"><a href="/readmore/<%= article.id %>"><%= article.title %></a></h3>
                       <div class="meta-wrap">

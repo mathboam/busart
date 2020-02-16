@@ -30,6 +30,9 @@ const Article = new mongoose.Schema({
     comment:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'comment'
+    },
+    relatedImage:{
+        type:String,
     }
 });
 

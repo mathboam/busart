@@ -4,19 +4,19 @@
 
  
    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-    <aside id="colorlib-aside" role="complementary" class="js-fullheight">
-      <a href="/">
-        <img src="images/buslogo.png" class="logo-image" alt="logo">
-       </a>
-        <nav id="colorlib-main-menu" role="navigation">
-            <ul>
-                <li class="colorlib-active"><a href="/">Home</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
-            </ul>
-        </nav>
+   <aside id="colorlib-aside" role="complementary" class="js-fullheight">
+    <a href="/">
+      <img src="/images/log.jpg" class="logo-image" alt="logo">
+     </a>
+      <nav id="colorlib-main-menu" role="navigation">
+          <ul>
+              <li class="colorlib-active"><i style="color: #1eafed;" class="fas fa-home"></i>  <a href="/">Home</a></li>
+              <li> <i class="fas fa-user-plus"></i><a href="/register">Register</a></li>
+              <li> <i class="fas fa-sign-in-alt"></i> <a href="/login">Login</a></li>
+          </ul>
+      </nav>
 
-    </aside>
+  </aside>
 
 
     <div id="colorlib-main">
@@ -28,7 +28,7 @@
                         <h1 class="mb-3"><%= article.title %></h1>
                 <p><%= article.body %></p>
                 <p>
-                  <img src="images/image_1.jpg" alt="" class="img-fluid">
+                  <img src="/images/image_1.jpg" alt="" class="img-fluid">
                 </p>
                 <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
                 <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
@@ -51,7 +51,7 @@
                     <img src="images/buslogo.png" alt="Image placeholder" class="img-fluid mb-4">
                   </div>
                   <div class="desc">
-                    <h3>George Washington</h3>
+                    <h3><%= article.author %></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
                   </div>
                 </div>

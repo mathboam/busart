@@ -38,7 +38,7 @@ function checkFileType(file,cb){
 // initialize upload
 const upload = multer({
     storage:storage,
-    limits:{fileSize:1 * 1000 * 1000},
+    limits:{fileSize: 1 * 1000 * 1000},
     fileFilter: function(req,file,cb){
         checkFileType(file,cb)
     },
@@ -146,7 +146,7 @@ module.exports={
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
                     <h2>Click the button below to activate your email on Busuart</h2>
-                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
+                    <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
                 `
             };
             
@@ -190,9 +190,9 @@ module.exports={
     // login handle
     login:async(req,res,next)=>{
 
-        const user = await Publisher.find({'email':req.body.email});
+        const user = await Publisher.findOne({'email':req.body.email});
         if ( typeof user !== undefined) {
-            if (user[0].active === true) {
+            if (user.active === true) {
                 passport.authenticate('local',{
                     successRedirect:'/userDashboard',
                     failureRedirect:'/login',
@@ -211,7 +211,7 @@ module.exports={
     logoutController:(req,res)=>{
         req.logout();
         req.flash('success_msg','You are logged out');
-        res.redirect('/home');
+        res.redirect('/');
     },
     ensureAuthenticated: function(req,res,next){
         if(req.isAuthenticated()){
@@ -245,18 +245,52 @@ module.exports={
         
         res.send('pass');
     },
+
+    // handle readmore page
     readmore:async(req,res,next)=>{
         const { articleId } =  req.params;
-        console.log(articleId);
+        // console.log(articleId);
         
-         await Article.findById(articleId,(err,article)=>{
+         await Article.findById(articleId,async(err,article)=>{
             if (err) {
                 console.log(err);
             }else{
-                console.log(article);
-                res.render('single',{article});
+                // console.log(article);
+                const authorId = article.author;
+                console.log(authorId);
+                
+                const author = await Publisher.findById(authorId)
+                // console.log(author);
+
+
+                res.render('single',{article,author});
             }
         });
        
+    },
+
+    articles:async(req,res,next) =>{
+        const userId = req.params.userid;
+        const user = await Publisher.findById(userId)
+
+
+        const userArticlesIds = user.articles;
+        console.log(userArticlesIds);
+        
+        const userArticles = [];
+        console.log(userArticlesIds[0]);
+        
+        const info = [];
+
+        if(userArticlesIds[0] === undefined){
+            info.push({msg:"You dont have an article now..... Write your first article"});
+        }else{
+            userArticles.forEach(async article =>{
+                const fullart = await Article.findById(article);
+                userArticles.push(fullart);
+            })
+        }
+
+        res.render('articles',{userArticles,user,info});
     }
 }

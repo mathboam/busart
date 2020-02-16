@@ -12,5 +12,8 @@ module.exports = {
         res.render('userDashboard',{
             user: req.user
         })
+    },
+    articles:(req,res,next) =>{
+        res.render('articles');
     }
 }

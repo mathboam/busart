@@ -14,6 +14,10 @@ const commentSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    mail:{
+        type:String,
+        required:true
+    },
     commentText:{
         type:String,
         required:true

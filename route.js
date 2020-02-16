@@ -28,7 +28,7 @@ router.route('/publishers/:userId/publisher')
 .delete(publisherController.deleteUser,publisherController.getUsers);
 
 router.route('/publisher/:userId/article')
-.post(articleController.addArticle)
+.post(articleController.saveImage,articleController.addArticle);
 // .get(articleController.getUserArticles);
 
 router.route('/articles/:postId/article')
@@ -55,4 +55,7 @@ router.route('/activate/:userId')
 
 router.route('/delete')
 .get(publisherController.delete)
+
+router.route('/userDashboard/articles/:userid')
+.get(publisherController.articles)
 module.exports = router;
