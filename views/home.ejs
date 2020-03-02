@@ -1,20 +1,38 @@
 <!-- <body> -->
-  
-<div id="colorlib-page">
-    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-    <aside id="colorlib-aside" role="complementary" class="js-fullheight">
-      <a href="/">
-        <img src="/images/log.jpg" class="logo-image" alt="logo">
-       </a>
-        <nav id="colorlib-main-menu" role="navigation">
-            <ul>
-                <li class="colorlib-active"><i style="color: #1eafed;" class="fas fa-home"></i>  <a href="/">Home</a></li>
-                <li> <i class="fas fa-user-plus"></i><a href="/register">Register</a></li>
-                <li> <i class="fas fa-sign-in-alt"></i> <a href="/login">Login</a></li>
-            </ul>
-        </nav>
 
-    </aside>
+
+<% let tech = 0; %>
+<% let tax = 0; %>
+<% let food = 0; %>
+<% let person = 0; %>
+<% let conduct = 0; %>
+<% let invest = 0; %>
+<% let other = 0; %>
+
+<% verifiedArticles.forEach(function(article){ %>
+  <% console.log(article.category) %>
+  <% if(article.category === "Tax"){%>
+    <% tax = tax + 1 %>
+
+  <% } %>
+  <% if(article.category == "conduct"){%>
+    <% conduct = conduct + 1 %>
+
+  <% } %>
+  <% if(article.category == "personal"){%>
+    <% person = person+ 1 %>
+  <% } %>
+  <% if(article.category == "IT"){%>
+    <% tech = tech + 1 %>
+  <% } %>
+  <% if(article.category == "investment"){%>
+    <% invest = invest +1 %>
+  <% } %>
+  <% if(article.category == "other"){%>
+    <% other = other +1 %>
+  <% } %>
+
+<% }); %>
 
     <div id="colorlib-main">
         <section class="ftco-section ftco-no-pt ftco-no-pb">
@@ -23,7 +41,6 @@
                 <div class="col-xl-8 py-5 px-md-5">
                     <div class="row pt-md-4">
                     <%-  include ('partials/homecards') %>
-                       
                 </div><!-- END-->
                   <div class="row">
                   <div class="col">
@@ -55,55 +72,18 @@
             <div class="sidebar-box ftco-animate">
                 <h3 class="sidebar-heading">Categories</h3>
               <ul class="categories">
-                <li><a href="#">Investment Articles <span>(6)</span></a></li>
-                <li><a href="#">Technology <span>(8)</span></a></li>
-                <li><a href="#">Tax Implications <span>(2)</span></a></li>
-                <li><a href="#">Food <span>(2)</span></a></li>
-                <li><a href="#">Porfessional Conduct<span>(7)</span></a></li>
-                <li><a href="#">Other <span>(2)</span></a></li>
+                <li><a href="#">Investment Articles <span>(<%= invest %>)</span></a></li>
+                <li><a href="#">Technology <span>(<%= tech %>)</span></a></li>
+                <li><a href="#">Tax Implications <span>(<%= tax %>)</span></a></li>
+                <li><a href="#">Food <span>(<%= tech %>)</span></a></li>
+                <li><a href="#">Porfessional Conduct<span>(<%= tax %>)</span></a></li>
+                <li><a href="#">Other <span>(<%= other %>)</span></a></li>
               </ul>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3 class="sidebar-heading">Popular Articles</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
             </div>
                         <div class="sidebar-box subs-wrap img py-4" style="background-image: url(images/bg_1.jpg);">
                             <div class="overlay"></div>
                             <h3 class="mb-4 sidebar-heading">Newsletter</h3>
-                            <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+                            <p class="mb-4">Subscribe to our Newsletter to get updates on new articles </p>
               <form action="#" class="subscribe-form">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Email Address">
