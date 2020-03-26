@@ -1,0 +1,28 @@
+<% function tellmonth(indexOfMonth){ %>
+  <%const monthnames = ['jan','feb','march','april','may','june','july','august','september','october','december']; %>
+   <%return monthnames[indexOfMonth]%>
+<%}%>
+
+<% if(typeof verifiedArticles != 'undefined') { %>
+ <%   verifiedArticles.forEach(function(article){ %>
+    <div class="col-md-12">
+        <!-- <%- verifiedArticles %> -->
+              <div class="blog-entry ftco-animate d-md-flex">
+                  <a href="/readmore/<%= article.id %>" class="img img-2" style="background-image: url('<%= article.relatedImage.slice(6)%>')"></a>
+                  <div class="text text-2 pl-md-4">
+                    <h3 class="mb-2"><a href="/readmore/<%= article.id %>"><%= article.title %></a></h3>
+                      <div class="meta-wrap">
+                            <p class="meta">
+                                <span><i class="icon-calendar mr-2"></i> <%= article.date.getDate()%> / <%= tellmonth(article.date.getMonth())%> / <%= article.date.getFullYear()%>  </span>
+                                <span><a href="/readmore/<%= article.id %>"><i class="icon-folder-o mr-2"></i><%= article.category %></a></span>
+                                <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+                            </p>
+                      </div>
+                    <p class="mb-4"> <%= article.body.slice(0,200) %>....</p>
+                    <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                  </div>
+              </div>
+          </div>
+   <% }); %>
+<% } %>
+

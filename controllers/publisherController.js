@@ -146,7 +146,7 @@ module.exports={
                 text: 'Hello world',
                 html: `<h1> Welcome, <strong> ${publisher.full_name} </strong><h1
                     <h2>Click the button below to activate your email on Busuart</h2>
-                    <a href="https://busart.herokuapp.com/activate/${publisher.id}">Verify account</a>
+                    <a href="http://localhost:5000/activate/${publisher.id}">Verify account</a>
                 `
             };
             
@@ -278,16 +278,17 @@ module.exports={
         console.log(userArticlesIds);
         
         const userArticles = [];
-        console.log(userArticlesIds[0]);
+        // console.log(userArticlesIds[0]);
         
         const info = [];
 
         if(userArticlesIds[0] === undefined){
             info.push({msg:"You dont have an article now..... Write your first article"});
         }else{
-            userArticles.forEach(async article =>{
+            userArticlesIds.forEach(async article =>{
                 const fullart = await Article.findById(article);
                 userArticles.push(fullart);
+                // console.log(userArticles);
             })
         }
 

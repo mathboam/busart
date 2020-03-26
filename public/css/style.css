@@ -9318,7 +9318,11 @@ textarea.form-control {
 /* .user-panel mt-3 pb-3 mb-3 d-flex.user-panel img{height:auto;width:2.1rem} */
 
 .user-panel img{height:30px;width:2.0rem}
-.image{float:none;}
+.image{
+  position:fixed;
+  right:30px;
+  top:12px;
+}
 
 
 .info{overflow:hidden;white-space:nowrap; display:inline-block;padding:5px 5px 5px 10px}
