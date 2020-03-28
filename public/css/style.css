@@ -5400,7 +5400,8 @@ button.bg-danger:focus {
   background-color: #f8f9fa !important;
   /* display:flex; */
   /* flex-direction: column; */
-  /* position: relative; */
+  /* position: fixed; */
+ 
   /* margin-left: 50px; */
   /* width:30%; */
   /* overflow-x: scroll; */
@@ -8194,7 +8195,7 @@ h1, h2, h3, h4, h5,
   padding-bottom: 40px;
   padding-left: 2em;
   padding-right: 2em;
-  width: 22%;
+  width: 20%;
   position: fixed;
   bottom: 0;
   top: 0;
@@ -8372,16 +8373,20 @@ h1, h2, h3, h4, h5,
         color: rgba(0, 0, 0, 0.5); }
 
 #colorlib-main {
-  width: 100%;
+  width: 85%;
   float: right;
+  /* flex-wrap: wrap; */
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  transition: all 0.5s ease; 
+}
   @media (min-width: 992px) {
     #colorlib-main {
-      width: 75%; } }
+      /* width: 60%;  */
+    } 
+  }
 
 .colorlib-nav-toggle {
   cursor: pointer;
@@ -8919,8 +8924,31 @@ textarea.form-control {
   background-position: center center; }
 
 .bg-light {
-  background: #f8f9fa !important; }
-
+  background: #f8f9fa !important; 
+   width:20%;
+  position: fixed;
+  right: 0;
+  overflow-y:hidden;
+  height:100%;
+  z-index: 1001;
+}
+@media (max-width: 767.98px) {
+  .bg-light{
+    display:none;
+  }
+}
+@media (min-width: 576px) {
+  .bg-light {
+    display: none; } }
+@media (min-width: 768px) {
+  .bg-light {
+    display: none; } }
+@media (min-width: 992px) {
+  .bg-light {
+    display: none; } }
+@media (min-width: 1200px) {
+  .bg-light {
+    display: block; } }
 .bg-primary {
   background: #1eafed !important; }
 
@@ -9183,8 +9211,8 @@ textarea.form-control {
   font-size: 15px;
   width: 100%; }
   .sidebar-box h3.sidebar-heading {
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 15px;
+    font-weight: bold;
     font-style: italic;
     margin-bottom: 30px; }
   @media (max-width: 767.98px) {
@@ -9195,6 +9223,7 @@ textarea.form-control {
   padding: 0; }
   .categories li, .sidelink li {
     position: relative;
+    font-size: smaller;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #dee2e6;

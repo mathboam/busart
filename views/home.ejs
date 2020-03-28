@@ -10,7 +10,7 @@
 <% let other = 0; %>
 
 <% verifiedArticles.forEach(function(article){ %>
-  <% console.log(article.category) %>
+
   <% if(article.category === "Tax"){%>
     <% tax = tax + 1 %>
 
@@ -39,9 +39,9 @@
         <div class="container">
             <div class="row d-flex">
                 <div class="col-xl-8 py-5 px-md-5">
-                    <div class="row pt-md-4">
+                    <div class="row pt-md-4" style="display: flex;flex-direction: row; justify-content: center;align-items: center; flex-wrap: wrap;">
                     <%-  include ('partials/homecards') %>
-                </div><!-- END-->
+                    </div><!-- END-->
                   <div class="row">
                   <div class="col">
                     <div class="block-27">
@@ -80,18 +80,7 @@
                 <li><a href="#">Other <span>(<%= other %>)</span></a></li>
               </ul>
             </div>
-                        <div class="sidebar-box subs-wrap img py-4" style="background-image: url(images/bg_1.jpg);">
-                            <div class="overlay"></div>
-                            <h3 class="mb-4 sidebar-heading">Newsletter</h3>
-                            <p class="mb-4">Subscribe to our Newsletter to get updates on new articles </p>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Email Address">
-                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
-                </div>
-              </form>
-            </div>
-
+                        
 
 
             <!-- <div class="sidebar-box ftco-animate">

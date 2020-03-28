@@ -70,7 +70,7 @@ module.exports = {
     
     
              const relatedImage = req.file.path;
-            console.log();
+
             
             
             const newArticle = new Article({
